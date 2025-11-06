@@ -2,6 +2,9 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 
+// Cache configuration
+const CACHE_DURATION = 300; // 5 minutes in seconds
+
 export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
@@ -19,32 +22,41 @@ export async function GET(request) {
       where.isActive = isActive === 'true';
     }
 
-    // Fetch services
+    // Fetch services with optimized query (only select needed fields)
     const services = await prisma.service.findMany({
       where,
+      select: {
+        id: true,
+        nameEn: true,
+        nameHi: true,
+        descriptionEn: true,
+        descriptionHi: true,
+        price: true,
+        duration: true,
+        category: true,
+        benefitsEn: true,
+        benefitsHi: true,
+        availableSlots: true,
+        imageUrl: true,
+        isActive: true,
+      },
       orderBy: {
         price: 'asc',
       },
     });
 
-    return NextResponse.json({
+    const response = NextResponse.json({
       success: true,
-      services: services.map((service) => ({
-        id: service.id,
-        nameEn: service.nameEn,
-        nameHi: service.nameHi,
-        descriptionEn: service.descriptionEn,
-        descriptionHi: service.descriptionHi,
-        price: service.price,
-        duration: service.duration,
-        category: service.category,
-        benefitsEn: service.benefitsEn,
-        benefitsHi: service.benefitsHi,
-        availableSlots: service.availableSlots,
-        imageUrl: service.imageUrl,
-        isActive: service.isActive,
-      })),
+      services,
     });
+
+    // Add cache headers for better performance
+    response.headers.set(
+      'Cache-Control',
+      `public, s-maxage=${CACHE_DURATION}, stale-while-revalidate=${CACHE_DURATION * 2}`
+    );
+
+    return response;
   } catch (error) {
     console.error('Fetch services error:', error);
     return NextResponse.json(

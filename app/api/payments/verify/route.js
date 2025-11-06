@@ -64,12 +64,13 @@ export async function POST(request) {
       );
     }
 
-    // Fetch booking
+    // Fetch booking with payment to check for duplicates
     const booking = await prisma.booking.findUnique({
       where: { id: bookingId },
       include: {
         service: true,
         user: true,
+        payment: true,
       },
     });
 
@@ -86,6 +87,28 @@ export async function POST(request) {
         { success: false, error: 'Unauthorized access to booking' },
         { status: 403 }
       );
+    }
+
+    // Check if payment already processed (prevent duplicate payments)
+    if (booking.payment && booking.payment.status === 'SUCCESS') {
+      return NextResponse.json({
+        success: true,
+        message: 'Payment already verified',
+        payment: {
+          id: booking.payment.id,
+          receiptNumber: booking.payment.receiptNumber,
+          receiptUrl: booking.payment.receiptUrl,
+          amount: booking.payment.amount,
+          status: booking.payment.status,
+        },
+        booking: {
+          id: booking.id,
+          status: booking.status,
+          serviceName: booking.service.nameEn,
+          bookingDate: booking.bookingDate,
+          bookingTime: booking.bookingTime,
+        },
+      });
     }
 
     // Fetch payment details from Razorpay
