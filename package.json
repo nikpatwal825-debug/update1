@@ -6,7 +6,13 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "test:coverage": "vitest --coverage",
+    "test:ui": "vitest --ui",
+    "type-check": "echo 'Type checking not configured yet'",
+    "format:check": "echo 'Format checking not configured yet'"
   },
   "dependencies": {
     "@prisma/client": "^6.18.0",
@@ -51,8 +57,14 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4.0.11",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@vitejs/plugin-react": "^5.1.0",
     "eslint": "^9",
     "eslint-config-next": "15.2.1",
-    "tailwindcss": "^4.0.11"
+    "jsdom": "^27.1.0",
+    "tailwindcss": "^4.0.11",
+    "vitest": "^4.0.7"
   }
 }
