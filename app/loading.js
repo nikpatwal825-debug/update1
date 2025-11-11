@@ -16,9 +16,31 @@ export default function Loading() {
         ></div>
       </div>
 
-      {/* Loading Animation */}
-      <div className="relative flex flex-col items-center justify-center gap-8">
-        {/* Rotating Yantra */}
+      {/* Loading Animation - Just Rotating Yantra */}
+      <div className="relative flex flex-col items-center justify-center">
+        {/* Outer Ring - Counter Rotation */}
+        <motion.div
+          animate={{
+            rotate: -360,
+          }}
+          transition={{
+            repeat: Infinity,
+            duration: 4,
+            ease: "linear",
+          }}
+          className="absolute"
+        >
+          <Image
+            src="/icons/bahar-wala.svg"
+            alt="Loading"
+            width={180}
+            height={180}
+            className="opacity-80"
+            priority
+          />
+        </motion.div>
+
+        {/* Inner Yantra - Main Rotation */}
         <motion.div
           animate={{
             rotate: 360,
@@ -28,13 +50,13 @@ export default function Loading() {
             duration: 3,
             ease: "linear",
           }}
-          className="relative"
+          className="relative z-10"
         >
           <Image
-            src="/icons/kuber-yantra-bg.svg"
-            alt="Loading..."
-            width={120}
-            height={120}
+            src="/icons/andar-wala.svg"
+            alt="Loading"
+            width={140}
+            height={140}
             className="opacity-90"
             priority
           />
@@ -43,77 +65,18 @@ export default function Loading() {
         {/* Pulsing Glow Effect */}
         <motion.div
           animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.6, 0.3],
+            scale: [1, 1.3, 1],
+            opacity: [0.2, 0.5, 0.2],
           }}
           transition={{
             repeat: Infinity,
-            duration: 2,
+            duration: 2.5,
             ease: "easeInOut",
           }}
-          className="absolute w-40 h-40 bg-sandalwood/20 rounded-full blur-3xl"
+          className="absolute w-48 h-48 bg-sandalwood/30 rounded-full blur-3xl"
         />
-
-        {/* Loading Text */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="text-center"
-        >
-          <p
-            className="text-2xl font-light text-deep-brown mb-2"
-            style={{ fontFamily: "Cormorant Garamond, serif" }}
-          >
-            KuberJi Mandir
-          </p>
-          <motion.div
-            animate={{
-              opacity: [0.5, 1, 0.5],
-            }}
-            transition={{
-              repeat: Infinity,
-              duration: 1.5,
-              ease: "easeInOut",
-            }}
-            className="flex items-center justify-center gap-1"
-          >
-            <span className="text-sm text-incense font-light">Loading</span>
-            <motion.span
-              animate={{ opacity: [0, 1, 0] }}
-              transition={{
-                repeat: Infinity,
-                duration: 1.5,
-                times: [0, 0.5, 1],
-              }}
-            >
-              .
-            </motion.span>
-            <motion.span
-              animate={{ opacity: [0, 1, 0] }}
-              transition={{
-                repeat: Infinity,
-                duration: 1.5,
-                times: [0, 0.5, 1],
-                delay: 0.2,
-              }}
-            >
-              .
-            </motion.span>
-            <motion.span
-              animate={{ opacity: [0, 1, 0] }}
-              transition={{
-                repeat: Infinity,
-                duration: 1.5,
-                times: [0, 0.5, 1],
-                delay: 0.4,
-              }}
-            >
-              .
-            </motion.span>
-          </motion.div>
-        </motion.div>
       </div>
     </div>
   );
 }
+
