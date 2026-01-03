@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import MyNav from "@/components/MyNav";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -109,8 +108,7 @@ export default function About() {
   ];
 
   return (
-    <div className="bg-heritage-cream cursor-default select-none min-h-screen">
-      <MyNav />
+    <div className="bg-heritage-cream cursor-default select-none min-h-screen" data-page="about">
 
       {/* Hero Section - Heritage Design */}
       <section className="relative py-16 px-4 bg-ivory border-b border-sandalwood/10">

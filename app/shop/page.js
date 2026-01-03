@@ -1,8 +1,8 @@
 "use client";
 import Footer from '@/components/Footer';
 import { motion } from "framer-motion";
-import MyNav from '@/components/MyNav';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getTranslation } from "@/lib/translations";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -59,8 +59,7 @@ export default function Shop() {
   };
 
   return (
-    <section className="bg-heritage-cream cursor-default select-none min-h-screen"> 
-      <MyNav/>
+    <section className="bg-heritage-cream cursor-default select-none min-h-screen" data-page="shop">
 
       {/* Header Section - Heritage Design */}
       <section className="relative py-20 px-4 bg-ivory border-b border-sandalwood/10">
@@ -310,13 +309,13 @@ export default function Shop() {
               : 'These sacred items blessed at Lord Kuber\'s temple are meant to bring wealth, prosperity and happiness into your life. Each item has been blessed with proper rituals and mantras at the temple.'}
           </p>
           <div className="pt-4">
-            <a 
+            <Link 
               href="/contact" 
               className="inline-block px-8 py-4 bg-sandalwood text-ivory rounded-sm font-light hover:bg-deep-brown transition-all duration-300 border border-sandalwood"
               style={{ fontFamily: language === 'hi' ? 'Noto Serif Devanagari, serif' : 'Cormorant Garamond, serif' }}
             >
               {language === 'hi' ? 'संपर्क करें' : 'Contact Us'}
-            </a>
+            </Link>
           </div>
         </div>
       </section>

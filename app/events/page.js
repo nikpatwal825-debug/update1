@@ -1,11 +1,10 @@
 "use client";
-import MyNav from "@/components/MyNav";
 import Footer from "@/components/Footer";
-import ExpandableCardModal from "@/components/expandable-card-demo-grid";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getTranslation } from "@/lib/translations";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 export default function Events() {
@@ -64,8 +63,7 @@ export default function Events() {
   ];
 
   return (
-    <main className="bg-heritage-cream min-h-screen">
-      <MyNav />
+    <main className="bg-heritage-cream min-h-screen" data-page="events">
       
       {/* Header Section - Heritage Design */}
       <section className="relative py-20 px-4 bg-ivory border-b border-sandalwood/10">
@@ -149,11 +147,11 @@ export default function Events() {
               ? 'हमारे विशेष कार्यक्रमों और दैनिक अनुष्ठानों में भाग लेने के लिए आज ही पूजा बुक करें।'
               : 'Book your pooja today to participate in our special events and daily rituals.'}
           </p>
-          <a href="/aarti-pooja">
+          <Link href="/aarti-pooja">
             <button className="bg-sandalwood text-ivory px-8 py-3 rounded-sm font-light transition-all duration-300 hover:bg-deep-brown border border-sandalwood shadow-sm" style={{ fontFamily: language === 'hi' ? 'Noto Serif Devanagari, serif' : 'Cormorant Garamond, serif' }}>
               {language === 'hi' ? 'पूजा बुक करें' : 'Book Pooja'}
             </button>
-          </a>
+          </Link>
         </div>
       </section>
 

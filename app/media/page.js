@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import MyNav from "@/components/MyNav";
 import Footer from "@/components/Footer";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
@@ -92,8 +91,7 @@ export default function MediaPage() {
       : galleryImages.filter((img) => img.category === selectedCategory);
 
   return (
-    <div className="bg-heritage-cream min-h-screen">
-      <MyNav />
+    <div className="bg-heritage-cream min-h-screen" data-page="media">
 
       {/* Hero Banner - Heritage Design */}
       <section className="relative py-12 md:py-20 px-4 bg-ivory border-b border-sandalwood/10">

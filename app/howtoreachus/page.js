@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import MyNav from "@/components/MyNav";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Footer from "@/components/Footer";
@@ -70,8 +69,7 @@ const ReachUs = () => {
   ];
 
   return (
-    <div className="bg-heritage-cream min-h-screen">
-      <MyNav />
+    <div className="bg-heritage-cream min-h-screen" data-page="howtoreachus">
       
       {/* Hero Section with Video - Heritage Design */}
       <section className="relative h-[500px] md:h-[600px] overflow-hidden">
