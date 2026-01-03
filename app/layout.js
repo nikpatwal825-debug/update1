@@ -4,6 +4,7 @@ import "./globals.css";
 import Loading from "./loading";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { Analytics } from "@vercel/analytics/next";
+import MyNav from "@/components/MyNav";
 
 export const metadata = {
   title: "KuberJi Mandir - Pandukeshwar",
@@ -21,6 +22,7 @@ export default function RootLayout({ children }) {
       <body className="relative font-rubik">
         <LanguageProvider>
           <Suspense fallback={<Loading />}>
+          <MyNav />
             {children}
           </Suspense>
           <Analytics />
