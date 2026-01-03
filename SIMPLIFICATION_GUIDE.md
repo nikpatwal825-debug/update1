@@ -37,27 +37,36 @@
 ### ✅ New Features
 
 #### WhatsApp Booking System
-All service and aarti bookings now redirect to WhatsApp:
+All service, aarti, and shop item bookings now redirect to WhatsApp with unique detailed messages:
 
-**Important**: Update the WhatsApp number in both files:
-- `app/aarti-pooja/page.js` (Line 11)
-- `app/services/page.jsx` (Line 6)
+**WhatsApp Number Configured**: `917579183761`
 
-Replace `919999999999` with your actual WhatsApp number (include country code).
+**Files Updated:**
+- `app/aarti-pooja/page.js` - Aarti/Pooja bookings
+- `app/services/page.jsx` - Temple services bookings
+- `app/shop/page.js` - Shop items orders
+
+**Dynamic Message Features:**
+- Each aarti/service/product sends a unique detailed message
+- Includes item name, price, duration, category, description
+- Benefits list for services and products
+- Special dates/festivals for aartis
+- Easy identification of what customer wants to book/order
 
 **How it works:**
-1. User clicks "Book Now" on any service
-2. A pre-filled WhatsApp message opens with service details
-3. User sends the message to confirm booking
-4. Temple admin manually confirms and sends live streaming link
+1. User clicks "Book via WhatsApp" or "Order via WhatsApp"
+2. A pre-filled WhatsApp message opens with complete item details
+3. Message includes all specifics (name, price, category, benefits, etc.)
+4. User sends the message - you can immediately identify what they want
+5. Manually confirm and send live streaming link or shipping details
 
 ### 📱 User Flow
 
 1. **Visit Website** → Browse all pages freely (no login required)
-2. **Select Service/Aarti** → Click "Book via WhatsApp"
-3. **WhatsApp Opens** → Pre-filled message with service details
-4. **Send Message** → Confirm booking with temple
-5. **Receive Link** → Get live streaming link via WhatsApp after confirmation
+2. **Select Service/Aarti/Product** → Click "Book via WhatsApp" or "Order via WhatsApp"
+3. **WhatsApp Opens** → Pre-filled detailed message with complete item information
+4. **Send Message** → Customer confirms booking/order with you
+5. **Receive Confirmation** → You identify the exact item and send streaming link or shipping details
 
 ### 🗂️ Simplified Structure
 
@@ -97,12 +106,61 @@ app/
 - crypto
 - zod (removed but can keep if needed for other validations)
 
-### ⚙️ Configuration Required
+### ⚙️ Configuration Completed
 
-**Update WhatsApp Number:**
+**WhatsApp Number Already Configured:**
 ```javascript
-// In app/aarti-pooja/page.js and app/services/page.jsx
-const WHATSAPP_NUMBER = '919999999999'; // Replace with your number
+// Already updated in:
+// - app/aarti-pooja/page.js
+// - app/services/page.jsx  
+// - app/shop/page.js
+const WHATSAPP_NUMBER = '917579183761';
+```
+
+### 📝 WhatsApp Message Examples
+
+**For Aarti Booking:**
+```
+🙏 Namaste!
+
+I would like to book the following Aarti/Pooja:
+
+📿 *Service:* Morning Aarti
+💰 *Price:* ₹500
+⏱️ *Duration:* 30 minutes
+🕐 *Timing:* 6:00 AM
+📂 *Category:* Daily Aarti
+
+📋 *Description:*
+Start your day with divine blessings...
+
+Please confirm the booking and send me the live streaming link.
+
+Thank you! 🙏
+```
+
+**For Shop Orders:**
+```
+🙏 Namaste!
+
+I would like to order the following item from Kuber Prasadam:
+
+🛍️ *Product:* Rudraksh Mala
+💰 *Price:* ₹1100
+📂 *Category:* Spiritual Items
+📦 *Type:* Physical Product
+
+📋 *Description:*
+Authentic 5-mukhi Rudraksh mala...
+
+✨ *Benefits:*
+1. Spiritual awakening
+2. Peace of mind
+3. Protection from negative energy
+
+Please confirm the availability and provide shipping details.
+
+Thank you! 🙏
 ```
 
 ### 🎯 Benefits

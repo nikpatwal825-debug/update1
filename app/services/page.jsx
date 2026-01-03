@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 // WhatsApp contact number for bookings
-const WHATSAPP_NUMBER = '919999999999'; // Replace with actual WhatsApp number
+const WHATSAPP_NUMBER = '917579183761';
 
 export default function ServicesPage() {
   const [selectedCategory, setSelectedCategory] = useState('ALL');
@@ -96,7 +96,24 @@ export default function ServicesPage() {
 
   const handleBookNow = (service) => {
     const serviceName = language === 'en' ? service.nameEn : service.nameHi;
-    const message = `Hello! I would like to book "${serviceName}" for ${formatPrice(service.price)}. Please confirm the booking and send me the details.`;
+    const description = language === 'en' ? service.descriptionEn : service.descriptionHi;
+    const benefits = language === 'en' ? service.benefitsEn : service.benefitsHi;
+    
+    // Create detailed message with service info
+    let message = `🙏 Namaste!\n\n`;
+    message += `I would like to book the following Temple Service:\n\n`;
+    message += `🕉️ *Service:* ${serviceName}\n`;
+    message += `💰 *Price:* ${formatPrice(service.price)}\n`;
+    message += `⏱️ *Duration:* ${service.duration} minutes\n`;
+    message += `📂 *Category:* ${service.category.replace('_', ' ')}\n\n`;
+    message += `📋 *Description:*\n${description}\n\n`;
+    message += `✨ *Benefits:*\n`;
+    benefits.forEach((benefit, index) => {
+      message += `${index + 1}. ${benefit}\n`;
+    });
+    message += `\nPlease confirm the booking and send me the details.\n\n`;
+    message += `Thank you! 🙏`;
+    
     const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };

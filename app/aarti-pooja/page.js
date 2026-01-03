@@ -8,7 +8,7 @@ import { getTranslation } from '@/lib/translations';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 
 // WhatsApp contact number for bookings
-const WHATSAPP_NUMBER = '919999999999'; // Replace with actual WhatsApp number
+const WHATSAPP_NUMBER = '917579183761';
 
 export default function AartiPoojaPage() {
   const { language } = useLanguage();
@@ -29,7 +29,25 @@ export default function AartiPoojaPage() {
 
   const handleWhatsAppRedirect = () => {
     const serviceName = language === 'hi' ? selectedService.titleHi : selectedService.titleEn;
-    const message = `Hello! I would like to book "${serviceName}" for ₹${selectedService.price}. Please confirm the booking and send me the live streaming link.`;
+    const description = language === 'hi' ? selectedService.descriptionHi : selectedService.descriptionEn;
+    
+    // Create detailed message with service info
+    let message = `🙏 Namaste!\n\n`;
+    message += `I would like to book the following Aarti/Pooja:\n\n`;
+    message += `📿 *Service:* ${serviceName}\n`;
+    message += `💰 *Price:* ₹${selectedService.price}\n`;
+    message += `⏱️ *Duration:* ${selectedService.duration}\n`;
+    message += `🕐 *Timing:* ${selectedService.timing}\n`;
+    message += `📂 *Category:* ${selectedService.category}\n\n`;
+    message += `📋 *Description:*\n${description}\n\n`;
+    
+    if (selectedService.specialDate || selectedService.festival) {
+      message += `📅 *Special Date/Festival:* ${selectedService.specialDate || selectedService.festival}\n\n`;
+    }
+    
+    message += `Please confirm the booking and send me the live streaming link.\n\n`;
+    message += `Thank you! 🙏`;
+    
     const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
     setShowModal(false);
