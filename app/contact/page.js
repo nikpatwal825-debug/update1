@@ -1,20 +1,19 @@
 "use client";
 
-import MyNav from "@/components/MyNav";
 import Footer from "@/components/Footer";
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getTranslation } from "@/lib/translations";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import Link from "next/link";
 
 export default function Contact() {
   const { language } = useLanguage();
   const t = (key) => getTranslation(language, key);
 
   return (
-    <div className="bg-heritage-cream min-h-screen">
-      <MyNav />
+    <div className="bg-heritage-cream min-h-screen" data-page="contact">
 
       {/* Header Section - Heritage Design */}
       <section className="relative py-20 px-4 bg-ivory border-b border-sandalwood/10">
@@ -128,11 +127,11 @@ export default function Contact() {
                     ? 'चाहे आप मार्गदर्शन चाहने वाले आध्यात्मिक साधक हों या हमारे उद्देश्य में योगदान देना चाहते हों, हम आपसे सुनना पसंद करेंगे।'
                     : "Whether you're a spiritual seeker looking for guidance or someone who wants to contribute to our cause, we'd love to hear from you."}
                 </p>
-                <a href="/aarti-pooja">
+                <Link href="/aarti-pooja">
                   <button className="bg-ivory text-sandalwood px-6 py-3 rounded-sm font-light hover:bg-heritage-bg transition-all duration-300 border border-ivory" style={{ fontFamily: language === 'hi' ? 'Noto Serif Devanagari, serif' : 'Cormorant Garamond, serif' }}>
                     {language === 'hi' ? 'यात्रा की योजना बनाएं' : 'Plan Your Visit'}
                   </button>
-                </a>
+                </Link>
               </div>
             </motion.div>
 
